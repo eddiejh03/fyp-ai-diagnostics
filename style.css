@@ -450,88 +450,92 @@ body {
 }
 
 
-/* ============================================
-   MOBILE LAYOUT — COMPACT SINGLE SCREEN
-   ============================================ */
+/* ==========================================
+   MOBILE FIX — NO OVERLAP OR CLIPPED CONTENT
+   ========================================== */
 
 @media (max-width: 600px) {
 
-  html,
-  body {
+  html, body {
     margin: 0;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .page-shell {
     width: 100%;
-    height: 100dvh;
-    min-height: 0;
+    min-height: 100dvh;
+    height: auto;
     padding: 7px 9px;
     gap: 6px;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Header */
   .topbar {
-    height: 22px;
+    min-height: 22px;
+    height: auto;
     padding: 0 3px;
-    font-size: 0.56rem;
-    letter-spacing: 0.08em;
+    font-size: 0.55rem;
+    letter-spacing: 0.07em;
   }
 
   .topbar-star {
     font-size: 1rem;
   }
 
-  /* Main page */
+  /* Main layout: content determines height */
   .dashboard {
-    flex: 1;
-    min-height: 0;
     display: grid;
-    grid-template-rows:
-      minmax(0, 1.25fr)
-      minmax(0, 1fr);
-    border-radius: 17px;
+    flex: 1 0 auto;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+    height: auto;
     overflow: hidden;
+    border-radius: 17px;
   }
 
-  /* Top: Title + Research team */
+  /* TITLE + RESEARCH TEAM */
   .hero-card {
-    min-height: 0;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows:
-      minmax(0, 1fr)
-      minmax(0, 0.9fr);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+    height: auto;
   }
 
   .hero-copy {
+    padding: 17px 17px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
     min-height: 0;
-    padding: 13px 17px;
-    gap: 7px;
     border-right: none;
     border-bottom: 1px solid var(--border);
-    justify-content: center;
   }
 
   .micro-label {
     font-size: 0.58rem;
-    letter-spacing: 0.11em;
+    letter-spacing: 0.1em;
   }
 
   .hero-title {
-    font-size: clamp(1.22rem, 5.2vw, 1.65rem);
-    line-height: 1.08;
-    letter-spacing: -0.045em;
+    margin: 0;
     max-width: none;
+    font-size: clamp(1.28rem, 5.3vw, 1.65rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
     overflow-wrap: normal;
   }
 
   .invitation-line {
     display: block;
-    margin-top: 2px;
+    margin-top: 0;
   }
 
   .section-kicker {
@@ -540,24 +544,26 @@ body {
   }
 
   .invitation-line p {
-    margin-top: 3px;
+    margin: 4px 0 0;
     font-size: 0.69rem;
-    line-height: 1.3;
+    line-height: 1.35;
   }
 
-  /* Research team */
+  /* RESEARCH TEAM */
   .team-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     min-height: 0;
-    padding: 12px 17px;
-    justify-content: center;
+    padding: 13px 17px 15px;
   }
 
   .team-card .section-eyebrow {
-    margin-bottom: 3px;
+    margin: 0 0 5px;
   }
 
   .team-card > .card-title {
-    margin-bottom: 9px;
+    margin: 0 0 10px;
   }
 
   .team-layout {
@@ -569,8 +575,9 @@ body {
 
   .portrait-wrap {
     width: 66px;
-    height: 88px;
-    border-radius: 9px;
+    height: 86px;
+    border-radius: 10px;
+    overflow: hidden;
   }
 
   .portrait {
@@ -580,48 +587,53 @@ body {
   }
 
   .team-info {
-    gap: 9px;
+    display: flex;
+    flex-direction: column;
     min-width: 0;
+    gap: 9px;
   }
 
   .person-block {
-    gap: 2px;
+    gap: 3px;
   }
 
   .role-label {
     font-size: 0.55rem;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
   }
 
   .person-block h3 {
-    font-size: 0.69rem;
-    line-height: 1.2;
+    margin: 0;
+    font-size: 0.68rem;
+    line-height: 1.22;
     overflow-wrap: anywhere;
   }
 
   .contact-line {
-    font-size: 0.6rem;
+    margin: 0;
+    font-size: 0.58rem;
     line-height: 1.25;
     overflow-wrap: anywhere;
   }
 
-  /* Bottom grid */
+  /* PURPOSE + PARTICIPATION + QUESTIONNAIRE */
   .bottom-grid {
-    min-height: 0;
     display: grid;
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 1fr);
-    grid-template-rows:
-      minmax(0, 0.82fr)
-      minmax(0, 1.18fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    min-height: 0;
+    height: auto;
+    align-items: stretch;
   }
 
   .bottom-grid > .info-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     min-height: 0;
-    padding: 10px 12px;
-    border-top: 0;
-    justify-content: center;
+    height: auto;
+    padding: 13px 12px 15px;
+    border-top: none;
   }
 
   .bottom-grid > .info-card:first-child {
@@ -629,124 +641,132 @@ body {
   }
 
   .bottom-grid > .info-card:nth-child(2) {
-    border-right: 0;
+    border-right: none;
   }
 
   .section-eyebrow {
+    margin: 0 0 6px;
+    min-height: 0;
     font-size: 0.65rem;
-    letter-spacing: 0.065em;
-    line-height: 1.2;
-    margin-bottom: 5px;
+    line-height: 1.25;
+    letter-spacing: 0.055em;
   }
 
   .card-title {
-    font-size: 0.98rem;
-    line-height: 1.12;
-    margin: 0 0 7px;
+    margin: 0 0 8px;
+    font-size: 1rem;
+    line-height: 1.15;
   }
 
   .body-text {
-    font-size: 0.67rem;
-    line-height: 1.35;
+    margin: 0;
+    font-size: 0.66rem;
+    line-height: 1.37;
   }
 
   .glance-grid {
-    grid-template-columns: 43px minmax(0, 1fr);
-    column-gap: 4px;
-    row-gap: 4px;
-    font-size: 0.58rem;
-    line-height: 1.25;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 5px 5px;
+    align-items: start;
+    font-size: 0.57rem;
+    line-height: 1.3;
   }
 
+  .glance-grid span,
   .glance-grid strong {
-    font-weight: 700;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
-  /* QR occupies full bottom width */
+  /* Full-width QR panel */
   .bottom-grid > .qr-card {
     grid-column: 1 / -1;
-    min-height: 0;
+    grid-row: auto;
     display: grid;
-    grid-template-columns:
-      minmax(0, 1fr)
-      auto;
-    grid-template-rows: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto;
     align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
+    min-height: 0;
+    height: auto;
+    gap: 12px;
+    padding: 12px 16px;
     border-top: 1px solid var(--border);
+    border-right: none;
   }
 
   .qr-copy {
-    min-width: 0;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-self: center;
+    min-width: 0;
   }
 
   .qr-copy .card-title {
-    font-size: 1.18rem;
+    font-size: 1.12rem;
     line-height: 1.15;
     margin-bottom: 8px;
   }
 
   .qr-text {
-    font-size: 0.67rem;
     max-width: 20ch;
+    font-size: 0.66rem;
+    line-height: 1.35;
   }
 
   .qr-wrap {
-    align-self: center;
-    justify-self: end;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     min-width: 0;
   }
 
   .qr-image {
     display: block;
-    width: min(39vw, 19dvh, 170px);
+    width: clamp(120px, 34vw, 155px);
     height: auto;
     aspect-ratio: 1;
-    padding: 5px;
-    border-radius: 9px;
     object-fit: contain;
-    background: white;
+    padding: 5px;
+    border-radius: 10px;
+    background: #fff;
   }
 
   /* Footer */
   .footer-bar {
-    height: 17px;
-    flex: 0 0 auto;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
     gap: 6px;
-    padding: 0 2px;
-    font-size: 0.43rem;
-    letter-spacing: 0.025em;
+    height: auto;
+    min-height: 18px;
+    padding: 3px 2px;
+    font-size: 0.42rem;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
   }
 
   .footer-bar p {
     margin: 0;
+    min-width: 0;
   }
 }
 
-/* For shorter phones, allow content to remain
-   accessible instead of clipping it. */
-@media (max-width: 600px) and (max-height: 650px) {
-  html,
-  body {
-    overflow: auto;
-  }
-
-  .page-shell {
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
-  }
-
-  .dashboard {
-    flex: none;
-    min-height: 650px;
-  }
+/* Section headings without redundant titles */
+.section-eyebrow {
+  margin-bottom: 14px;
 }
 
+.team-card .section-eyebrow {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 600px) {
+  .section-eyebrow,
+  .team-card .section-eyebrow {
+    margin-bottom: 9px;
+  }
+}
